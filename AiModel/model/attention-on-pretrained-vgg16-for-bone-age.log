@@ -1,0 +1,29 @@
+[{
+  "data": "[NbConvertApp] Converting notebook script.ipynb to html\n",
+  "stream_name": "stderr",
+  "time": 4.307365770000615
+},{
+  "data": "[NbConvertApp] Executing notebook with kernel: python3\n",
+  "stream_name": "stderr",
+  "time": 4.360794596999767
+},{
+  "data": "2018-04-11 13:46:23.026656: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:898] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero\n2018-04-11 13:46:23.027128: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1355] Found device 0 with properties: \nname: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235\npciBusID: 0000:00:04.0\ntotalMemory: 11.17GiB freeMemory: 11.10GiB\n2018-04-11 13:46:23.027171: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1434] Adding visible gpu devices: 0\n",
+  "stream_name": "stderr",
+  "time": 90.43185289400571
+},{
+  "data": "2018-04-11 13:46:28.342826: I tensorflow/core/common_runtime/gpu/gpu_device.cc:922] Device interconnect StreamExecutor with strength 1 edge matrix:\n2018-04-11 13:46:28.343727: I tensorflow/core/common_runtime/gpu/gpu_device.cc:928]      0 \n2018-04-11 13:46:28.343739: I tensorflow/core/common_runtime/gpu/gpu_device.cc:941] 0:   N \n",
+  "stream_name": "stderr",
+  "time": 95.74863276099495
+},{
+  "data": "2018-04-11 13:46:28.347708: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1052] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 10629 MB memory) -> physical GPU (device: 0, name: Tesla K80, pci bus id: 0000:00:04.0, compute capability: 3.7)\n",
+  "stream_name": "stderr",
+  "time": 95.78322197799571
+},{
+  "data": "[NbConvertApp] Support files will be in __results___files/\n[NbConvertApp] Making directory __results___files\n",
+  "stream_name": "stderr",
+  "time": 12207.714217140994
+},{
+  "data": "[NbConvertApp] Making directory __results___files\n[NbConvertApp] Making directory __results___files\n[NbConvertApp] Making directory __results___files\n[NbConvertApp] Making directory __results___files\n[NbConvertApp] Making directory __results___files\n[NbConvertApp] Writing 324688 bytes to __results__.html\n",
+  "stream_name": "stderr",
+  "time": 12207.750233401996
+}]

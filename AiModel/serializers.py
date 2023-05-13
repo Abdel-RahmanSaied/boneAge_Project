@@ -1,26 +1,30 @@
 from rest_framework import serializers
 from .models import Xray
+from .model_weights import Aimodel
+from tensorflow.keras.preprocessing import image
+from tensorflow.keras.applications.vgg16 import preprocess_input
+import numpy as np
+import os
 
 class XraySerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
     class Meta:
         model = Xray
         fields = '__all__'
 
-        def predict(self):
-            data = self.validated_data
-            picture = data['picture']
-            picture = os.path.join(os.getcwd()+f"/media/chest_image/{chest_pic}")
-            modedl_path = r"ml_model/chestExploration.hdf5"
-            model = keras.models.load_model(modedl_path)
-            gray_image = cv2.imread(chest_pic, 0)
-            resized_image = cv2.resize(gray_image, (100, 100))
-            scaled_image = resized_image.astype("float32") / 255.0
-            sample_batch = scaled_image.reshape(1, 100, 100, 1)  # 1 image, 100, 100 dim , 1 no of chanels
-            result = model.predict(sample_batch)
-            result[result >= 0.5] = 1  # Normal
-            result[result < 0.5] = 0  # Pneimonia
-            if result[0][0] == 1:
-                result = "Normal"
-            else:
-                result = "Pneimonia"
-            return result
+    def predict(self):
+        data = self.validated_data
+        picture = data['image']
+        picture = os.path.join(os.getcwd()+f"/media/xray_images/{picture}")
+
+        model = Aimodel()
+        img = image.load_img(picture, target_size=(384, 384))
+
+        x = image.img_to_array(img)
+        x = np.expand_dims(x, axis=0)
+        x = preprocess_input(x)
+
+        pred = model.predict(x)
+        result = pred[0][0]
+
+        return str(result)

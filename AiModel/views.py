@@ -3,12 +3,14 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 
+from django_filters.rest_framework import DjangoFilterBackend
+
 from .models import Xray
 from .serializers import XraySerializer
 
 # Create your views here.
 
-class XRay_viewSet(viewsets.ModelViewSet):
+class XrayViewSet(viewsets.ModelViewSet):
     queryset = Xray.objects.all()
     serializer_class = XraySerializer
     permission_classes = [IsAuthenticated]
@@ -21,9 +23,13 @@ class XRay_viewSet(viewsets.ModelViewSet):
         if serializer.is_valid() :
             # serializer.save()
             instance = serializer.save()
+
             result = serializer.predict()
-            instance.result = result
+
+            instance.result = str(result)
             instance.save()
+            print("$"*100)
+            request.data["result"] = str(result)
             return Response({"response": request.data["result"]}, status=status.HTTP_201_CREATED)
             # return Response(chestTestSerializer.data.update(result=result), status=status.HTTP_201_CREATED)
         else:

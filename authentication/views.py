@@ -35,6 +35,15 @@ class UserViewSet(viewsets.ModelViewSet):
     filterset_fields = ['id', 'username', 'email', 'first_name', 'last_name']
     search_fields = ('username','email', 'first_name', 'last_name', )
 
+    def create(self, request, *args, **kwargs):
+        serializer = ClientSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        client = serializer.save()
+        token = Token.objects.get(user=client.user).key
+        data = serializer.data
+        data['token'] = token
+        return Response(data, status=status.HTTP_201_CREATED)
+
     def update(self, request, *args, **kwargs):
         kewargs = {'partial': True}
         return super().update(request, *args, **kewargs)

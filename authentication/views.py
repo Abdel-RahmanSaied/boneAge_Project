@@ -39,7 +39,7 @@ class UserViewSet(viewsets.ModelViewSet):
         serializer = UserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         client = serializer.save()
-        token = Token.objects.get(user=client.user).key
+        token = Token.objects.get(user=client).key
         data = serializer.data
         data['token'] = token
         return Response(data, status=status.HTTP_201_CREATED)

@@ -36,7 +36,7 @@ class UserViewSet(viewsets.ModelViewSet):
     search_fields = ('username','email', 'first_name', 'last_name', )
 
     def create(self, request, *args, **kwargs):
-        serializer = ClientSerializer(data=request.data)
+        serializer = UserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         client = serializer.save()
         token = Token.objects.get(user=client.user).key

@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'AiModel',
     'rest_framework',
     'rest_framework.authtoken',
-    'django_rest_passwordreset',
     'django_filters',
 
 ]

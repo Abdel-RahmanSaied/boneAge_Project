@@ -18,11 +18,17 @@ class CustomAuthToken(ObtainAuthToken):
             user = serializer.validated_data['user']
             token, created = Token.objects.get_or_create(user=user)
             # is_trainer = TRAINERS.objects.filter(user_id=user.pk).exists()
+            profile_picture = request.build_absolute_uri(user.profile_picture.url)
 
             return Response({
                 'token': token.key,
                 'user_id': user.pk,
                 'email': user.email,
+                'username': user.username,
+                'first_name': user.first_name,
+                'last_name': user.last_name,
+                'profile_picture': profile_picture,
+
             })
         else:
             return Response({"Response": "username or password was incorrect"}, status=status.HTTP_401_UNAUTHORIZED)

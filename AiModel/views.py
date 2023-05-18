@@ -35,3 +35,8 @@ class XrayViewSet(viewsets.ModelViewSet):
         else:
             return Response({"response": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
+    def get_queryset(self):
+        queryset = Xray.objects.all()
+        queryset = queryset.filter(user=self.request.user)
+        return queryset
+
